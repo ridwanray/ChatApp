@@ -58,7 +58,7 @@ class Common(Configuration):
 
     INSTALLED_APPS = DJANGO_APPS + VENDOR_APPS + PROJECT_APPS
 
-    MIDDLEWARE = (
+    l = (
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,6 +68,14 @@ class Common(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
         'django.middleware.security.SecurityMiddleware',
     )
+
+    from django import get_version
+    from packaging import version
+
+    if version.parse(get_version()) < version.parse("1.10"):
+        MIDDLEWARE_CLASSES = l
+    else:
+        MIDDLEWARE = l
 
     ROOT_URLCONF = 'config.urls'
 

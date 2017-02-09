@@ -1,6 +1,9 @@
 from django.views import generic
 from braces.views import LoginRequiredMixin
-from django.urls import reverse
+try:
+    from django.urls import reverse
+except ModuleNotFoundError:
+    from django.core.urlresolvers import reverse
 from apps.chat import models
 from apps.chat import utils
 from django.shortcuts import get_object_or_404
