@@ -1,2 +1,2 @@
 -r ../requirements_dev.txt
-Django==1.10.8
+Django==2.2.24
